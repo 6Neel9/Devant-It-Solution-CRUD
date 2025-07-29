@@ -11,14 +11,20 @@ connectDB();
 
 const app = express();
 app.use(express.json());
+
 app.use(cors({
-  origin: 'https://devant-it-solution-crud-1.onrender.com/', // Allow frontend
-  credentials: true                // If you plan to send cookies (for JWT in headers, it's still fine)
+  origin: 'https://devant-it-solution-crud-1.onrender.com',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+
+app.get('/', (req, res) => {
+  res.send('API is running');
+});
 
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
-
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
