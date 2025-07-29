@@ -2,7 +2,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getToken, removeToken } from '../../utils/auth';
 
-const API = '/api/tasks';
+const API = `${import.meta.env.VITE_API_URL}api/tasks`;
 
 export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async (_, thunkAPI) => {
   try {
