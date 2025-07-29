@@ -13,9 +13,8 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: 'https://devant-it-solution-crud-1.onrender.com',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: '*', // Allows all domains
+  credentials: false // Set to false when using origin: '*'
 }));
 
 
