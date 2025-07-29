@@ -24,7 +24,7 @@ const Login = ({ setIsAuthenticated }) => {
     setError('');
 
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
@@ -33,11 +33,11 @@ const Login = ({ setIsAuthenticated }) => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Login failed');
 
-      saveToken(data.token);              // Save token to localStorage
-      setIsAuthenticated(true);          // 🔥 Notify App.jsx of login
-      navigate('/');                     // Redirect to dashboard
+      saveToken(data.token);
+      setIsAuthenticated(true);  // Let App.jsx know
+      navigate('/');
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Server error');
     }
   };
 
